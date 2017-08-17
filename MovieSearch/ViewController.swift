@@ -27,6 +27,7 @@ class ViewController: UIViewController,UISearchBarDelegate {
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = true
         searchBar.delegate = self
+        searchBar.sizeToFit()
         searchBar.enablesReturnKeyAutomatically = true
         searchBar.returnKeyType = UIReturnKeyType.done
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))

@@ -23,22 +23,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-iY-XdO">
-                                <rect key="frame" x="0.0" y="25" width="337" height="44"/>
+                            <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-iY-XdO">
+                                <rect key="frame" x="0.0" y="63" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="337" id="Buz-FV-Twh"/>
+                                    <constraint firstAttribute="width" constant="375" id="Buz-FV-Twh"/>
+                                    <constraint firstAttribute="height" constant="44" id="NGd-Ch-xcW"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dT-EY-Iqr">
-                                <rect key="frame" x="350" y="36" width="20" height="22"/>
-                                <state key="normal" image="Filter"/>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8Oh-ss-wia">
-                                <rect key="frame" x="0.0" y="81" width="375" height="586"/>
+                                <rect key="frame" x="0.0" y="117" width="375" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="586" id="4nP-t3-iKN"/>
+                                    <constraint firstAttribute="height" constant="550" id="4nP-t3-iKN"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CTQ-pK-oSQ">
                                     <size key="itemSize" width="176" height="288"/>
@@ -87,16 +85,28 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TxG-J5-BIK"/>
                                 </connections>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fr1-Go-GYl">
+                                <rect key="frame" x="0.0" y="19" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Movies" id="H6K-zJ-xze">
+                                        <barButtonItem key="rightBarButtonItem" title="Filter" id="bGw-6b-esi"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="fr1-Go-GYl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1dK-Vt-5n8"/>
                             <constraint firstAttribute="trailing" secondItem="8Oh-ss-wia" secondAttribute="trailing" id="8Bm-oV-uhF"/>
+                            <constraint firstAttribute="trailing" secondItem="91Q-iY-XdO" secondAttribute="trailing" id="DbE-Vl-Fsy"/>
                             <constraint firstItem="8Oh-ss-wia" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Fjs-qf-gaj"/>
-                            <constraint firstItem="3dT-EY-Iqr" firstAttribute="leading" secondItem="91Q-iY-XdO" secondAttribute="trailing" constant="13" id="HtC-72-2SP"/>
+                            <constraint firstItem="fr1-Go-GYl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-1" id="HWV-Xj-vMt"/>
+                            <constraint firstItem="91Q-iY-XdO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="JHb-bC-Duc"/>
+                            <constraint firstAttribute="trailing" secondItem="fr1-Go-GYl" secondAttribute="trailing" id="K37-99-kIP"/>
                             <constraint firstItem="91Q-iY-XdO" firstAttribute="leading" secondItem="8Oh-ss-wia" secondAttribute="leading" id="QHL-G3-3k6"/>
+                            <constraint firstItem="91Q-iY-XdO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="43" id="RZb-je-aHs"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8Oh-ss-wia" secondAttribute="bottom" id="p8i-gh-uwJ"/>
-                            <constraint firstItem="91Q-iY-XdO" firstAttribute="centerY" secondItem="3dT-EY-Iqr" secondAttribute="centerY" id="sI0-aL-Xjv"/>
-                            <constraint firstItem="8Oh-ss-wia" firstAttribute="top" secondItem="91Q-iY-XdO" secondAttribute="bottom" constant="12" id="w1P-pE-QeI"/>
+                            <constraint firstItem="8Oh-ss-wia" firstAttribute="top" secondItem="91Q-iY-XdO" secondAttribute="bottom" constant="10" id="w1P-pE-QeI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gex-7P-PTd"/>
@@ -237,7 +247,4 @@
             <point key="canvasLocation" x="3016.8000000000002" y="47.226386806596707"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Filter" width="20" height="20"/>
-    </resources>
 </document>
