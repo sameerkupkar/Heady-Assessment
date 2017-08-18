@@ -206,7 +206,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
         let movie = filteredData[indexPath.row]
 
-        //cell.posterName.text = "Jatin\(indexPath.item)"
+        
         if let posterPath = movie.posterPath {
             let baseUrl = "https://image.tmdb.org/t/p/w500"
            // let title1 = movie.title
