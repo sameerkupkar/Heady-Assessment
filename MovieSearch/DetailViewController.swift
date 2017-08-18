@@ -28,8 +28,8 @@ class DetailViewController: UIViewController {
         detailtext.text = detailtxt
         let baseUrl: String = "https://image.tmdb.org/t/p/w500"
 
-        let imageurl = URL(string: baseUrl + image1!)
-        thumnil.setImageWith(imageurl!)
+        guard  let imageurl = URL(string: baseUrl + image1!) else{return}
+        thumnil.setImageWith(imageurl)
         daterelease.text = date
         rating.text = rateing
         // Do any additional setup after loading the view.

@@ -9,9 +9,11 @@
 import UIKit
 import MBProgressHUD
 import AFNetworking
+import PopOverMenu
 
-class ViewController: UIViewController,UISearchBarDelegate {
+class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentationControllerDelegate {
 
+    @IBOutlet weak var filterbutton: UIBarButtonItem!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     let DetailSegueIdentifier = "DetailView"
@@ -20,8 +22,7 @@ class ViewController: UIViewController,UISearchBarDelegate {
     var filteredData: [Model]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
+  
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.allowsSelection = true
@@ -30,16 +31,23 @@ class ViewController: UIViewController,UISearchBarDelegate {
         searchBar.sizeToFit()
         searchBar.enablesReturnKeyAutomatically = true
         searchBar.returnKeyType = UIReturnKeyType.done
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
         filteredData = movieModels
         fetchMovies(nil)
-        
+        let barButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(ViewController.openMenu(sender:)))
+        self.navigationItem.rightBarButtonItem = barButtonItem
+
         addUIRefreshControl()
         
     }
 
     
+    @IBAction func FilterOption(_ sender: Any) {
+        openMenu(sender: filterbutton)
+        print("Press Filter")
+        
+       
+
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -69,45 +77,9 @@ class ViewController: UIViewController,UISearchBarDelegate {
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return filteredData.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
-//        let movie = filteredData[indexPath.row]
-//        
-//        //cell.posterName.text = "Jatin\(indexPath.item)"
-//        if let posterPath = movie.posterPath {
-//            let baseUrl = "https://image.tmdb.org/t/p/w500"
-//             let title1 = movie.title
-//            print("Title\(title1)")
-//            cell.posterName.text = movie.title
-//            // let rate = movie.vote
-//            //print("RATE\(rate)")
-//            let imageUrl = URL(string: baseUrl + posterPath)
-//            // print("ImageURl\(imageUrl)")
-//            cell.posterImage.setImageWith(imageUrl!)
-//            //cell.posterImage.setImageWith(imageUrl!)
-//            UIView.animate(withDuration: 1.0, animations: {() -> Void in
-//                cell.posterImage.alpha = 1.0
-//            })
-//        }
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-////        let cell: CollectionViewCell? = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-////        //self.posterImage = cell!.posterImage.image
-//        print("KAI BE")
-//        //self.performSegue(withIdentifier: DetailSegueIdentifier , sender:self )
-//    }
-//    
-//    
-//    
     func fetchMovies(_ refreshControl: UIRefreshControl?){
-        let apiKey = "cfb5050c94f86d1d8e3c763105e05fd3"
-      guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)&page=1&page=2") else {
+        let apiKey = "a2c2ec62069f1f18a3ca04ee1714efc0"
+      guard let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)") else {
             return
         }
         let request = URLRequest(url: url)
@@ -159,6 +131,67 @@ class ViewController: UIViewController,UISearchBarDelegate {
     }
     
 
+    public func openMenu(sender:UIBarButtonItem) {
+        let titles1:NSArray = ["Popular", "Rated"]
+        let descriptions:NSArray = ["Sort By popular", "Sort By high rated",]
+        
+        let popOverViewController = PopOverViewController.instantiate()
+        popOverViewController.setTitles(titles1 as! Array<String>)
+        popOverViewController.setDescriptions(descriptions as! Array<String>)
+        
+        // option parameteres
+        // popOverViewController.setSelectRow(1)
+        // popOverViewController.setShowsVerticalScrollIndicator(true)
+        // popOverViewController.setSeparatorStyle(UITableViewCellSeparatorStyle.singleLine)
+        
+        popOverViewController.popoverPresentationController?.barButtonItem = sender
+        popOverViewController.preferredContentSize = CGSize(width: 300, height:135)
+         popOverViewController.presentationController?.delegate = self
+        popOverViewController.completionHandler = { selectRow in
+            switch (selectRow) {
+            case 0:
+            let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "popularmovie") as! PopularMovieViewController
+            self.present(nextVC, animated: true, completion: nil)
+
+
+                break
+            case 1:
+                
+                let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "ratedmovie") as! RatedMovieViewController
+                self.present(nextVC, animated: true, completion: nil)
+                
+                
+                break
+            
+            default:
+                break
+            }
+            
+        };
+        present(popOverViewController, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
 
