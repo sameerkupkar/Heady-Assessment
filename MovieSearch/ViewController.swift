@@ -43,7 +43,7 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
     
     @IBAction func FilterOption(_ sender: Any) {
         openMenu(sender: filterbutton)
-        print("Press Filter")
+       
         
        
 
@@ -52,23 +52,23 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         dismissKeyboard()
-        //searchBar.resignFirstResponder()
+        
     
     }
     
 
     func dismissKeyboard() {
-        // add self
+        
         searchBar.resignFirstResponder()
     }
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){ // called when text changes (including clear)
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
      
         filteredData = searchText.isEmpty ? movieModels : movieModels.filter({(movie: Model) -> Bool in
             return movie.title!.range(of: searchText, options: .caseInsensitive) != nil
@@ -107,7 +107,7 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
         if (refreshControl  != nil){
             refreshControl!.endRefreshing()
                 }
-                                                                //self.tableView.reloadData()
+            
             self.collectionView.reloadData()
             
            
@@ -116,7 +116,7 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
             }
         })
         task.resume()
-        //task.resume()
+        
     }
 
 
@@ -127,7 +127,7 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
     func addUIRefreshControl(){
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(ViewController.refreshControlAction(_:)), for: UIControlEvents.valueChanged)
-        //tableView.insertSubview(refreshControl, at: 0)
+        
     }
     
 
@@ -138,11 +138,6 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
         let popOverViewController = PopOverViewController.instantiate()
         popOverViewController.setTitles(titles1 as! Array<String>)
         popOverViewController.setDescriptions(descriptions as! Array<String>)
-        
-        // option parameteres
-        // popOverViewController.setSelectRow(1)
-        // popOverViewController.setShowsVerticalScrollIndicator(true)
-        // popOverViewController.setSeparatorStyle(UITableViewCellSeparatorStyle.singleLine)
         
         popOverViewController.popoverPresentationController?.barButtonItem = sender
         popOverViewController.preferredContentSize = CGSize(width: 300, height:135)
@@ -209,15 +204,13 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         
         if let posterPath = movie.posterPath {
             let baseUrl = "https://image.tmdb.org/t/p/w500"
-           // let title1 = movie.title
-            //print("Title\(title1)")
+           
             cell.posterName.text = movie.title
-           // let rate = movie.vote
-            //print("RATE\(rate)")
+          
             let imageUrl = URL(string: baseUrl + posterPath)
-           // print("ImageURl\(imageUrl)")
+           
             cell.posterImage.setImageWith(imageUrl!)
-            //cell.posterImage.setImageWith(imageUrl!)
+            
             UIView.animate(withDuration: 1.0, animations: {() -> Void in
                 cell.posterImage.alpha = 1.0
             })
@@ -230,18 +223,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: DetailSegueIdentifier) as! DetailViewController
-        //nextVC.yourVariable = cell.theInfoYouWhatToPass
+        
         let movie = filteredData[indexPath.row]
         let moviename = movie.title!
         print("moviename\(moviename)")
         nextVC.movietitle1 = moviename
-       // self.navigationController?.pushViewController(nextVC, animated: true)
         nextVC.detailtxt = movie.overview
         nextVC.image1 = movie.posterPath!
         nextVC.date = movie.daterelease
         nextVC.rateing = String (describing: movie.vote!)
         self.present(nextVC, animated: true, completion: nil)
-       print("KAI BE PRINT")
 
         
     }

@@ -23,7 +23,6 @@ class DetailViewController: UIViewController {
     var image1 :String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("moviename333333\(movietitle1)")
         MovieTitle.text = movietitle1
         detailtext.text = detailtxt
         let baseUrl: String = "https://image.tmdb.org/t/p/w500"

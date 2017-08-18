@@ -55,7 +55,6 @@ class RatedMovieViewController: UIViewController,UICollectionViewDataSource,UICo
 
     func fetchMovies(_ refreshControl: UIRefreshControl?){
         let apiKey = "a2c2ec62069f1f18a3ca04ee1714efc0"
-        // let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)=IN")
         let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)")
         let request = URLRequest(url: url!)
         let session = URLSession(

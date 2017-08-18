@@ -58,7 +58,6 @@ class PopularMovieViewController: UIViewController,UICollectionViewDataSource,UI
     
     func fetchMovies(_ refreshControl: UIRefreshControl?){
         let apiKey = "a2c2ec62069f1f18a3ca04ee1714efc0"
-        // let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)=IN")
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)")
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -105,7 +104,6 @@ class PopularMovieViewController: UIViewController,UICollectionViewDataSource,UI
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
