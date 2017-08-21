@@ -1,0 +1,41 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - MBProgressHUD (1.0.0)
+  - PopOverMenu (1.8)
+
+DEPENDENCIES:
+  - AFNetworking
+  - MBProgressHUD
+  - PopOverMenu (from `https://github.com/tichise/PopOverMenu.git`)
+
+EXTERNAL SOURCES:
+  PopOverMenu:
+    :git: https://github.com/tichise/PopOverMenu.git
+
+CHECKOUT OPTIONS:
+  PopOverMenu:
+    :commit: 3a1a6d9dfaf1d77dec2de99b0a0b026616a795f7
+    :git: https://github.com/tichise/PopOverMenu.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  PopOverMenu: c1862a8468c2b98245903f73ea1bc505b2d2a973
+
+PODFILE CHECKSUM: aa585518100f0c96f8f710536e0d5f30baec0f0a
+
+COCOAPODS: 1.1.1
