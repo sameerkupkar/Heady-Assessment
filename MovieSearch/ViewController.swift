@@ -42,10 +42,7 @@ class ViewController: UIViewController,UISearchBarDelegate,UIAdaptivePresentatio
 
     
     @IBAction func FilterOption(_ sender: Any) {
-        openMenu(sender: filterbutton)
-       
-        
-       
+        openMenu(sender: filterbutton)     
 
     }
     
