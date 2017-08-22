@@ -200,13 +200,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionViewCell
         let movie = filteredData[indexPath.row]
-
+           cell.posterName.text = movie.title
         
         if let posterPath = movie.posterPath {
             let baseUrl = "https://image.tmdb.org/t/p/w500"
-           
-            cell.posterName.text = movie.title
-          
             let imageUrl = URL(string: baseUrl + posterPath)
            
             cell.posterImage.setImageWith(imageUrl!)
@@ -217,9 +214,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         }
         return cell
     }
-    
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: DetailSegueIdentifier) as! DetailViewController
